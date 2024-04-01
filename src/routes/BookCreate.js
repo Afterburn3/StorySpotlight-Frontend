@@ -1,18 +1,22 @@
+import React, { useState, useEffect } from "react";
 import Card from "../component/Card";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
-const BookFilter = ({ allBook, search, setSearch, setAllBook }) => {
-  const apiKey = "AIzaSyB7jaVlGZzvjAz6FB1NBIf6xYSNIAmqKWU";
+const BookCreate = () => {
+  const [search, setSearch] = useState("");
+  const [allBook, setAllBook] = useState([]);
+
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   function submitButton(e) {
+    e.preventDefault();
     fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${apiKey}`
     )
       .then((response) => response.json())
       .then((json) => setAllBook(json.items))
       .catch((error) => console.error("Error fetching books:", error));
-    e.preventDefault();
   }
   return (
     <>
@@ -55,4 +59,4 @@ const BookFilter = ({ allBook, search, setSearch, setAllBook }) => {
   );
 };
 
-export default BookFilter;
+export default BookCreate;

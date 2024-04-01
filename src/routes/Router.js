@@ -22,10 +22,6 @@ const Router = () => {
   // State for review books inside database
   const [bookData, setBookData] = useState([]);
 
-  // Search for unreview books, and put a list
-  const [search, setSearch] = useState("");
-  const [allBook, setAllBook] = useState([]);
-
   //State for select each Book to review page
   const [selectBook, setSelectBook] = useState([]);
 
@@ -73,19 +69,14 @@ const Router = () => {
           path: "admincreatereview",
           element: <AdminCreateReview bookData={bookData} />,
         },
+        {
+          path: "bookcreate",
+          element: <BookCreate />,
+        },
+        { path: "BookEdit/:id", element: <BookEdit /> },
       ],
     },
-    {
-      path: "bookcreate",
-      element: (
-        <BookCreate
-          search={search}
-          setSearch={setSearch}
-          setAllBook={setAllBook}
-          allBook={allBook}
-        />
-      ),
-    },
+
     {
       path: "bookfilter",
       element: <BookFilter bookData={bookData} />,
@@ -100,7 +91,6 @@ const Router = () => {
       ),
     },
     { path: "bookreview/:id", element: <BookReview /> },
-    { path: "BookEdit/:id", element: <BookEdit /> },
   ]);
 
   return (

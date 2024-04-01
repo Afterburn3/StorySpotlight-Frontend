@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Button from "react-bootstrap/esm/Button";
@@ -44,19 +45,21 @@ function AdminCreateReview({ bookData }) {
         </DropdownButton>
       </div>
       <AdminCarddatabase bookData={bookData} />
-      <Button
-        href="/bookcreate"
-        variant="primary"
-        className="container text-center my-3"
+      <Link
+        to="/admin/bookcreate" // Update this to point to the correct route
+        className="d-block mx-auto mb-3"
         style={{
+          width: "fit-content",
           position: "fixed",
-          bottom: 0,
+          bottom: "20px",
           left: "50%",
           transform: "translateX(-50%)",
         }}
       >
-        Can't find your book in our library? Click here to add a new book
-      </Button>
+        <Button variant="primary" size="lg">
+          Can't find your book in our library? Click here to add a new book
+        </Button>
+      </Link>
     </>
   );
 }
