@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -29,6 +29,28 @@ function Login({ setIsAuthenticated }) {
         const { token } = await response.json();
         setIsAuthenticated(true);
         localStorage.setItem("token", token);
+        localStorage.setItem("email", values.email);
+        const storedEmail = localStorage.getItem("email");
+        if (storedEmail) {
+          // Fetch the username using the stored email
+          fetch(`http://localhost:4000/getuser?email=${storedEmail}`)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to fetch user data");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              if (data.status === "success") {
+                localStorage.setItem("username", data.username);
+              } else {
+                console.error("User not found");
+              }
+            })
+            .catch((error) => {
+              console.error("Error fetching username:", error);
+            });
+        }
       } else {
         setError("Invalid email or password");
       }

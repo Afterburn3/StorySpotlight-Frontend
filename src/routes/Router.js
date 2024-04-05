@@ -8,22 +8,16 @@ import Home from "./Home";
 import BookCreate from "./BookCreate";
 import BookEdit from "./BookEdit";
 import BookList from "./BookList";
-import BookReview from "./BookReview";
 import BookFilter from "./BookFilter";
 import ErrorPage from "./ErrorPage";
 import Header from "../component/Header";
-import Admin from "./Admin";
-import DefaultAdmin from "./DefaultAmin";
-import AdminCreateReview from "./AdminCreateReview";
 import Login from "./Login";
 import Register from "./Register";
+import UpdateButton from "./UpdateButton";
 
 const Router = () => {
   // State for review books inside database
   const [bookData, setBookData] = useState([]);
-
-  //State for select each Book to review page
-  const [selectBook, setSelectBook] = useState([]);
 
   //State for user is authenticated or not, initial is false, once authenticate user can have access to admin
   //and can edit the review once log in
@@ -61,25 +55,14 @@ const Router = () => {
     },
     {
       path: "admin",
-      element: <PrivateRoute element={<Admin />} />,
-      children: [
-        { index: true, element: <DefaultAdmin /> },
-        { path: "booklist", element: <BookList bookData={bookData} /> },
-        {
-          path: "admincreatereview",
-          element: <AdminCreateReview bookData={bookData} />,
-        },
-        {
-          path: "bookcreate",
-          element: <BookCreate />,
-        },
-        { path: "BookEdit/:id", element: <BookEdit /> },
-      ],
+      element: <PrivateRoute element={<BookList />} />,
     },
 
     {
       path: "bookfilter",
-      element: <BookFilter bookData={bookData} />,
+      element: (
+        <BookFilter bookData={bookData} isAuthenticated={isAuthenticated} />
+      ),
     },
     { path: "register", element: <RestrictedRoute element={<Register />} /> },
     {
@@ -90,7 +73,18 @@ const Router = () => {
         />
       ),
     },
-    { path: "bookreview/:id", element: <BookReview /> },
+    {
+      path: "bookreview/:id",
+      element: <BookEdit isAuthenticated={isAuthenticated} />,
+    },
+    {
+      path: "bookupdatebutton/:id",
+      element: <PrivateRoute element={<UpdateButton />} />,
+    },
+    {
+      path: "bookcreate",
+      element: <PrivateRoute element={<BookCreate />} />,
+    },
   ]);
 
   return (

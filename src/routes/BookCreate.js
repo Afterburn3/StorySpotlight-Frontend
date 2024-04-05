@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "../component/Card";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 
 const BookCreate = () => {
   const [search, setSearch] = useState("");
@@ -42,17 +40,6 @@ const BookCreate = () => {
             </button>
           </div>
         </form>
-        <DropdownButton
-          className="my-4"
-          variant="Secondary"
-          id="dropdown-basic"
-          title="Sort By"
-          size="lg"
-        >
-          <Dropdown.Item href="#/action-1">Title</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Rating</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Recency</Dropdown.Item>
-        </DropdownButton>
       </div>
       <Card allBook={allBook} />
     </>

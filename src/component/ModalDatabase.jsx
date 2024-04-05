@@ -1,10 +1,8 @@
+import { Link } from "react-router-dom";
+
 function Modaldatabase({ show, bookItem, onClose }) {
   if (!show) {
     return null;
-  }
-
-  function goToReview(e) {
-    e.preventDefault();
   }
 
   return (
@@ -12,7 +10,7 @@ function Modaldatabase({ show, bookItem, onClose }) {
       <div className="overlay">
         <div className="overlay-inner">
           <button className="close" onClick={onClose}>
-            <i class="fas fa-times"></i>
+            <i className="fas fa-times"></i>
           </button>
           <div className="inner-box">
             <img src={bookItem.img_link} alt="" />
@@ -25,7 +23,9 @@ function Modaldatabase({ show, bookItem, onClose }) {
                 <button>More</button>
               </a>
               {"  "}
-              <button onClick={goToReview}>Review</button>
+              <Link to={`/bookreview/${bookItem.id}`}>
+                <button>Review</button>
+              </Link>
             </div>
           </div>
           <h4 className="description">{bookItem.book_description}</h4>

@@ -15,6 +15,8 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
       if (response.ok) {
         setIsAuthenticated(false);
         localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        localStorage.removeItem("username");
       } else {
         console.error("Logout failed");
       }
@@ -37,7 +39,11 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
               navbarScroll
             >
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/admin">Admin</Nav.Link>
+              {!isAuthenticated ? (
+                <></>
+              ) : (
+                <Nav.Link href="/admin">Reviews</Nav.Link>
+              )}
               <Nav.Link href="/bookfilter">Books</Nav.Link>
             </Nav>
             {!isAuthenticated ? (

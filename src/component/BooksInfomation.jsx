@@ -15,14 +15,14 @@ export default function BooksInformation({ bookData }) {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={bookData.length > 0 ? bookData[1].img_link : ""}
+            src={bookData.length > 0 ? bookData[2].img_link : ""}
             alt="Second slide"
           />
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={bookData.length > 0 ? bookData[2].img_link : ""}
+            src={bookData.length > 0 ? bookData[4].img_link : ""}
             alt="Third slide"
           />
         </Carousel.Item>

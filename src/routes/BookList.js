@@ -1,40 +1,88 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
+import StarRating from "../component/StarRating";
 
-const BookList = ({ bookData }) => {
-  const starImage = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      className="bi bi-star-fill"
-      viewBox="0 0 16 16"
-    >
-      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-    </svg>
-  );
+const BookList = () => {
+  const storedUsername = localStorage.getItem("username");
+  const [search, setSearch] = useState("");
+  const [bookData, setBookData] = useState([]);
+  const navigate = useNavigate();
+
+  function submitButton(e) {
+    e.preventDefault();
+  }
 
   const handleBookReviewSelect = (id) => {
-    // history.push;
+    navigate(`/bookreview/${id}`);
   };
+
+  const handleUpdate = (e, id) => {
+    e.stopPropagation();
+    navigate(`/bookupdatebutton/${id}`);
+  };
+
+  const handleDelete = async (e, id) => {
+    e.stopPropagation();
+    try {
+      const response = await fetch(`http://localhost:4000/deletereview/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        console.log("Review deleted successfully");
+        fetchData();
+      } else {
+        console.error("Failed to delete review");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  });
+
+  function fetchData() {
+    fetch(`http://localhost:4000/review/${storedUsername}`)
+      .then((response) => response.json())
+      .then((json) => setBookData(json.data.review))
+      .catch((error) => console.error("Error fetching books:", error));
+  }
 
   return (
     <>
+      <div className="container searchForm">
+        <h2 className="container text-center my-3">Find Your Review</h2>
+        <form onSubmit={submitButton}>
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search For Book Name"
+              aria-label="Search For Book Name"
+              aria-describedby="button-addon2"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <button
+              className="btn btn-outline-secondary"
+              type="submit"
+              id="button-addon2"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
       <div className="container">
-        <DropdownButton
-          variant="Secondary"
-          id="dropdown-basic"
-          title="Sort By"
-          size="lg"
+        <Table
+          striped
+          bordered
+          responsive="sm my-5"
+          className="table table-hover table-dark"
         >
-          <Dropdown.Item href="#/action-1">Title</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Rating</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Recency</Dropdown.Item>
-        </DropdownButton>
-        <Table striped bordered responsive="sm my-5" className="table-dark">
           <thead>
             <tr>
               <th>Book ID</th>
@@ -54,9 +102,9 @@ const BookList = ({ bookData }) => {
                 return (
                   <tr
                     onClick={() => {
-                      handleBookReviewSelect(book.id);
+                      handleBookReviewSelect(book.bookslist_id);
                     }}
-                    key={book.id}
+                    key={index + 1}
                   >
                     <td>{index + 1}</td>
                     <td>
@@ -65,18 +113,25 @@ const BookList = ({ bookData }) => {
                     <td>{book.book_title}</td>
                     <td>{book.author.replace(/[{}]/g, "")}</td>
                     <td>
-                      {starImage} {starImage} {starImage} {starImage}
+                      <StarRating rating={book.rating} />
                     </td>
-                    <td>{book.reading_time}</td>
-                    <td>{book.year}</td>
+                    <td>{book.review}</td>
+                    <td>{book.created_at.substring(0, 10)}</td>
                     <td>
-                      <Button variant="outline-warning">Update</Button>
-                      {/* onClick(e) => handleUpdate(e, restaurant.id) */}
-                      {/* e.stipPropagation() */}
+                      <Button
+                        onClick={(e) => handleUpdate(e, book.id)}
+                        variant="outline-warning"
+                      >
+                        Update
+                      </Button>
                     </td>
                     <td>
-                      <Button variant="outline-danger">Delete</Button>
-                      {/* onClick(e) => handleUpdate(e, restaurant.id) */}
+                      <Button
+                        onClick={(e) => handleDelete(e, book.id)}
+                        variant="outline-danger"
+                      >
+                        Delete
+                      </Button>
                     </td>
                   </tr>
                 );

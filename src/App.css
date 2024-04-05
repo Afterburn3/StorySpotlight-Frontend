@@ -111,3 +111,13 @@ body {
   text-align: justify;
   font-size: 1rem;
 }
+
+.big-image {
+  height: 400px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .overlay {
+    zoom: 60%;
+  }
+}

@@ -1,6 +1,3 @@
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-
 function Modal({ show, bookItem, onClose }) {
   if (!show) {
     return null;
@@ -34,6 +31,7 @@ function Modal({ show, bookItem, onClose }) {
       .catch((error) => {
         console.error("Error adding book:", error);
       });
+    onClose();
   }
 
   return (
@@ -60,22 +58,11 @@ function Modal({ show, bookItem, onClose }) {
               <a href={bookItem.volumeInfo.previewLink}>
                 <button>More</button>
               </a>
+              {"  "}
+              <button onClick={addBookToDatabase}>Add</button>
             </div>
           </div>
-          <br />
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Write Your Review</Form.Label>
-            <Form.Control
-              placeholder="Write Your Review Here"
-              as="textarea"
-              rows={8}
-            />
-            <Form.Label>Review Rate Placeholder</Form.Label>
-            <Form.Range />
-            <Button onClick={addBookToDatabase} variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form.Group>
+          <h4 className="description">{bookItem.volumeInfo.description}</h4>
         </div>
       </div>
     </>
