@@ -10,10 +10,6 @@ const BookList = () => {
   const [bookData, setBookData] = useState([]);
   const navigate = useNavigate();
 
-  function submitButton(e) {
-    e.preventDefault();
-  }
-
   const handleBookReviewSelect = (id) => {
     navigate(`/bookreview/${id}`);
   };
@@ -55,7 +51,7 @@ const BookList = () => {
     <>
       <div className="container searchForm">
         <h2 className="container text-center my-3">Find Your Review</h2>
-        <form onSubmit={submitButton}>
+        <form>
           <div className="input-group mb-3">
             <input
               type="text"
@@ -66,13 +62,6 @@ const BookList = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <button
-              className="btn btn-outline-secondary"
-              type="submit"
-              id="button-addon2"
-            >
-              Search
-            </button>
           </div>
         </form>
       </div>
@@ -98,44 +87,50 @@ const BookList = () => {
           </thead>
           <tbody>
             {bookData &&
-              bookData.map((book, index) => {
-                return (
-                  <tr
-                    onClick={() => {
-                      handleBookReviewSelect(book.bookslist_id);
-                    }}
-                    key={index + 1}
-                  >
-                    <td>{index + 1}</td>
-                    <td>
-                      <img src={book.img_link} alt="" />
-                    </td>
-                    <td>{book.book_title}</td>
-                    <td>{book.author.replace(/[{}]/g, "")}</td>
-                    <td>
-                      <StarRating rating={book.rating} />
-                    </td>
-                    <td>{book.review}</td>
-                    <td>{book.created_at.substring(0, 10)}</td>
-                    <td>
-                      <Button
-                        onClick={(e) => handleUpdate(e, book.id)}
-                        variant="outline-warning"
-                      >
-                        Update
-                      </Button>
-                    </td>
-                    <td>
-                      <Button
-                        onClick={(e) => handleDelete(e, book.id)}
-                        variant="outline-danger"
-                      >
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
+              bookData
+                .filter((book) => {
+                  return search.toLowerCase() === ""
+                    ? book
+                    : book.book_title.toLowerCase().includes(search);
+                })
+                .map((book, index) => {
+                  return (
+                    <tr
+                      onClick={() => {
+                        handleBookReviewSelect(book.bookslist_id);
+                      }}
+                      key={index + 1}
+                    >
+                      <td>{index + 1}</td>
+                      <td>
+                        <img src={book.img_link} alt="" />
+                      </td>
+                      <td>{book.book_title}</td>
+                      <td>{book.author.replace(/[{}]/g, "")}</td>
+                      <td>
+                        <StarRating rating={book.rating} />
+                      </td>
+                      <td>{book.review}</td>
+                      <td>{book.created_at.substring(0, 10)}</td>
+                      <td>
+                        <Button
+                          onClick={(e) => handleUpdate(e, book.id)}
+                          variant="outline-warning"
+                        >
+                          Update
+                        </Button>
+                      </td>
+                      <td>
+                        <Button
+                          onClick={(e) => handleDelete(e, book.id)}
+                          variant="outline-danger"
+                        >
+                          Delete
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })}
           </tbody>
         </Table>
       </div>
