@@ -23,7 +23,7 @@ function Modaldatabase({ show, bookItem, onClose }) {
                 <button>More</button>
               </a>
               {"  "}
-              <Link to={`/bookreview/${bookItem.id}`}>
+              <Link to={`/bookReviewDetailPage/${bookItem.id}`}>
                 <button>Review</button>
               </Link>
             </div>

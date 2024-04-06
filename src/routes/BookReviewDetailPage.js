@@ -52,7 +52,7 @@ const BookEdit = ({ isAuthenticated }) => {
 
   const handleUpdate = async () => {
     await checkSamePost();
-    navigate(`/bookupdatebutton/${userPostCheck.id}`);
+    navigate(`/userReviewUpdate/${userPostCheck.id}`);
   };
 
   const onSubmit = async (e) => {

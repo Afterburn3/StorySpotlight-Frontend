@@ -6,14 +6,14 @@ import {
 import React, { useState, useEffect } from "react";
 import Home from "./Home";
 import BookCreate from "./BookCreate";
-import BookEdit from "./BookEdit";
-import BookList from "./BookList";
-import BookFilter from "./BookFilter";
+import BookReviewDetailPage from "./BookReviewDetailPage";
+import UserReviewList from "./UserReviewList";
+import BookLists from "./BookLists";
 import ErrorPage from "./ErrorPage";
 import Header from "../component/Header";
 import Login from "./Login";
 import Register from "./Register";
-import UpdateButton from "./UpdateButton";
+import UserReviewUpdate from "./UserReviewUpdate";
 
 const Router = () => {
   // State for review books inside database
@@ -44,24 +44,26 @@ const Router = () => {
 
   //Function to check Route for login and signup
   const RestrictedRoute = ({ element }) => {
-    return !isAuthenticated ? element : <Navigate to="/admin" />;
+    return !isAuthenticated ? element : <Navigate to="/userReviewList" />;
   };
 
   const router = createBrowserRouter([
     {
+      //Home route
       path: "/",
       element: <Home bookData={bookData} />,
       errorElement: <ErrorPage />,
     },
     {
-      path: "admin",
-      element: <PrivateRoute element={<BookList />} />,
+      //User login review list
+      path: "userReviewList",
+      element: <PrivateRoute element={<UserReviewList />} />,
     },
-
     {
-      path: "bookfilter",
+      //Book list for user and guest
+      path: "bookLists",
       element: (
-        <BookFilter bookData={bookData} isAuthenticated={isAuthenticated} />
+        <BookLists bookData={bookData} isAuthenticated={isAuthenticated} />
       ),
     },
     { path: "register", element: <RestrictedRoute element={<Register />} /> },
@@ -74,14 +76,17 @@ const Router = () => {
       ),
     },
     {
-      path: "bookreview/:id",
-      element: <BookEdit isAuthenticated={isAuthenticated} />,
+      //Detail page for list of reviewers for one book
+      path: "bookReviewDetailPage/:id",
+      element: <BookReviewDetailPage isAuthenticated={isAuthenticated} />,
     },
     {
-      path: "bookupdatebutton/:id",
-      element: <PrivateRoute element={<UpdateButton />} />,
+      //Update user book for user login
+      path: "userReviewUpdate/:id",
+      element: <PrivateRoute element={<UserReviewUpdate />} />,
     },
     {
+      //Create a new book that is not in the data base, for user login
       path: "bookcreate",
       element: <PrivateRoute element={<BookCreate />} />,
     },
@@ -89,6 +94,7 @@ const Router = () => {
 
   return (
     <>
+      {/* Header apprear everywhere */}
       <Header
         isAuthenticated={isAuthenticated}
         setIsAuthenticated={setIsAuthenticated}

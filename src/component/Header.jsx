@@ -42,9 +42,9 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
               {!isAuthenticated ? (
                 <></>
               ) : (
-                <Nav.Link href="/admin">Reviews</Nav.Link>
+                <Nav.Link href="/userReviewList">Reviews</Nav.Link>
               )}
-              <Nav.Link href="/bookfilter">Books</Nav.Link>
+              <Nav.Link href="/bookLists">Books</Nav.Link>
             </Nav>
             {!isAuthenticated ? (
               <>

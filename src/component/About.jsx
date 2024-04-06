@@ -6,16 +6,15 @@ export default function About() {
         <br />
         <div className="col-lg-6 mx-auto">
           <p className="lead mb-4">
-            Quickly write down review and rate your top favorite books. Sort
-            them by rating, recency, or title.{" "}
+            Quickly write down review and rate your top favorite books.
           </p>
           <p className="lead mb-4">
             While I enjoy reading extensively, I sometimes struggle to recall
             the key highlights of each book after finishing it. Hence, I've
             adopted the habit of taking notes to capture the most memorable
             aspects. My favourite books include 48 Laws of Powers by Robert
-            Greene, 12 Rules for Life by Jordan Peterson and Can't Hurt Me:
-            Master Your Mind and Defy the Odds by David Goggins.
+            Greene, 12 Rules for Life by Jordan Peterson and A Stolen Life by
+            Jaycee Dugard.
           </p>
         </div>
       </div>

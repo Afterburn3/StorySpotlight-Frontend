@@ -5,18 +5,25 @@ import Button from "react-bootstrap/Button";
 import StarRating from "../component/StarRating";
 
 const BookList = () => {
+  //Username
   const storedUsername = localStorage.getItem("username");
+
+  //Search state
   const [search, setSearch] = useState("");
+
+  //Data (Reviews) from username
   const [bookData, setBookData] = useState([]);
+
+  //Navitigate route to bookreview
   const navigate = useNavigate();
 
   const handleBookReviewSelect = (id) => {
-    navigate(`/bookreview/${id}`);
+    navigate(`/bookReviewDetailPage/${id}`);
   };
 
   const handleUpdate = (e, id) => {
     e.stopPropagation();
-    navigate(`/bookupdatebutton/${id}`);
+    navigate(`/userReviewUpdate/${id}`);
   };
 
   const handleDelete = async (e, id) => {

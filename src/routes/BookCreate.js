@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Card from "../component/Card";
 
 const BookCreate = () => {
+  //State for search and book data from google api!
   const [search, setSearch] = useState("");
   const [allBook, setAllBook] = useState([]);
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
+  //Function to submit data to google API
   function submitButton(e) {
     e.preventDefault();
     fetch(
@@ -16,6 +18,7 @@ const BookCreate = () => {
       .then((json) => setAllBook(json.items))
       .catch((error) => console.error("Error fetching books:", error));
   }
+
   return (
     <>
       <div className="container searchForm">
