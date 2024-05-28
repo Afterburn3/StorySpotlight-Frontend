@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import CardDatabase from "../component/CardDatabase";
 import Button from "react-bootstrap/esm/Button";
+import "../App.css";
 
 const BookFilter = ({ bookData, isAuthenticated }) => {
   const [search, setSearch] = useState("");
 
   return (
     <>
-      <div className="container searchForm">
-        <h2 className="container text-center my-3">Find Review</h2>
+      <div className="container searchForm ">
+        <br />
         <form>
           <div className="input-group mb-3">
             <input

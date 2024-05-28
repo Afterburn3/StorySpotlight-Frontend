@@ -264,6 +264,8 @@ body {
   color: #333;
 }
 
+/* Book List */
+
 @media (max-width: 768px) {
   .overlay {
     zoom: 60%;
