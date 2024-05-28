@@ -116,6 +116,154 @@ body {
   height: 400px;
   margin: 0 auto;
 }
+
+/* Header.css */
+.custom-navbar {
+  background-color: #002b36; /* Dark grey/blue background */
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+.custom-brand {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-right: 40px;
+}
+
+.custom-nav {
+  font-size: 1.5rem;
+}
+
+.custom-nav-link {
+  color: #ffffff;
+  margin-right: 20px;
+  transition: color 0.3s;
+}
+
+.custom-nav-link:hover {
+  color: #f0a500; /* Highlight color on hover */
+}
+
+.custom-button {
+  font-size: 1.25rem;
+  margin-right: 10px;
+  max-height: 100px;
+}
+
+.login-button {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+.login-button:hover {
+  background-color: #ffffff;
+  color: #002b36;
+}
+
+.signup-button {
+  background-color: #f0a500;
+  border: none;
+  color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+.signup-button:hover {
+  background-color: #e08e00;
+}
+
+.logout-button {
+  background-color: #d9534f;
+  border: none;
+  color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #c9302c;
+}
+
+/* Home.css */
+.home-container {
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+.banner {
+  background-color: #002b36; /* Dark grey/blue background */
+  color: white;
+  text-align: center;
+  padding: 4rem 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+.banner h1 {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.banner p {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+/* About.css */
+.about-section {
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* BooksInformation.css */
+.books-section {
+  padding: 2rem 1rem;
+  background-color: #f4f4f9;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
+}
+
+.book-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0.5rem;
+  padding: 1rem;
+  width: 250px; /* Increased width */
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  scroll-snap-align: center;
+}
+
+.book-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.book-card img {
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.book-card p {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
 @media (max-width: 768px) {
   .overlay {
     zoom: 60%;
