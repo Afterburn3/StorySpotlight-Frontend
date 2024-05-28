@@ -34,39 +34,39 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
         <Navbar.Brand href="/" className="custom-brand">
           StorySpotlight
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav className="me-auto my-2 my-lg-0 custom-nav" navbarScroll>
-            <Nav.Link href="/" className="custom-nav-link">
-              Home
+        {/* <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll"> */}
+        <Nav className="me-auto my-2 my-lg-0 custom-nav" navbarScroll>
+          <Nav.Link href="/" className="custom-nav-link">
+            Home
+          </Nav.Link>
+          {isAuthenticated && (
+            <Nav.Link href="/userReviewList" className="custom-nav-link">
+              Reviews
             </Nav.Link>
-            {isAuthenticated && (
-              <Nav.Link href="/userReviewList" className="custom-nav-link">
-                Reviews
-              </Nav.Link>
-            )}
-            <Nav.Link href="/bookLists" className="custom-nav-link">
-              Books
-            </Nav.Link>
-          </Nav>
-          {!isAuthenticated ? (
-            <>
-              <Button href="/login" className="custom-button login-button">
-                Log In
-              </Button>
-              <Button href="/register" className="custom-button signup-button">
-                Sign-up
-              </Button>
-            </>
-          ) : (
-            <Button
-              className="custom-button logout-button"
-              onClick={handleSubmit}
-            >
-              Log Out
-            </Button>
           )}
-        </Navbar.Collapse>
+          <Nav.Link href="/bookLists" className="custom-nav-link">
+            Books
+          </Nav.Link>
+        </Nav>
+        {!isAuthenticated ? (
+          <>
+            <Button href="/login" className="custom-button login-button">
+              Log In
+            </Button>
+            <Button href="/register" className="custom-button signup-button">
+              Sign-up
+            </Button>
+          </>
+        ) : (
+          <Button
+            className="custom-button logout-button"
+            onClick={handleSubmit}
+          >
+            Log Out
+          </Button>
+        )}
+        {/* </Navbar.Collapse> */}
       </Container>
     </Navbar>
   );
