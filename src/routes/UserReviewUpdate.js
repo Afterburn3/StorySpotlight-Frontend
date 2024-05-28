@@ -28,7 +28,7 @@ function UpdateButton() {
   async function fetchData() {
     try {
       const response = await fetch(
-        `http://localhost:4000/revieweditdata/${id}`
+        `https://storyspotlight-backend.onrender.com/revieweditdata/${id}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch review data");

@@ -31,7 +31,7 @@ const Router = () => {
 
   //fetch All Books data
   useEffect(() => {
-    fetch("http://localhost:4000/allBooks")
+    fetch("https://storyspotlight-backend.onrender.com/allBooks")
       .then((response) => response.json())
       .then((json) => setBookData(json.data.bookslist))
       .catch((error) => console.error("Error fetching books:", error));

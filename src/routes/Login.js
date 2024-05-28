@@ -17,14 +17,17 @@ function Login({ setIsAuthenticated }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:4000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          password: values.password,
-          email: values.email,
-        }),
-      });
+      const response = await fetch(
+        "https://storyspotlight-backend.onrender.com/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            password: values.password,
+            email: values.email,
+          }),
+        }
+      );
       if (response.ok) {
         const { token } = await response.json();
         setIsAuthenticated(true);
@@ -33,7 +36,9 @@ function Login({ setIsAuthenticated }) {
         const storedEmail = localStorage.getItem("email");
         if (storedEmail) {
           // Fetch the username using the stored email
-          fetch(`http://localhost:4000/getuser?email=${storedEmail}`)
+          fetch(
+            `https://storyspotlight-backend.onrender.com/getuser?email=${storedEmail}`
+          )
             .then((response) => {
               if (!response.ok) {
                 throw new Error("Failed to fetch user data");

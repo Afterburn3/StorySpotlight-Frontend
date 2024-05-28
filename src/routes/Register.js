@@ -20,15 +20,18 @@ function Register() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: values.username,
-          password: values.password,
-          email: values.email,
-        }),
-      }).then((response) => response.json());
+      const response = await fetch(
+        "https://storyspotlight-backend.onrender.com/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: values.username,
+            password: values.password,
+            email: values.email,
+          }),
+        }
+      ).then((response) => response.json());
 
       if (response.errors && response.errors.length > 0) {
         const errorMessages = response.errors.map((error) => error.msg);

@@ -6,7 +6,7 @@ function Modal({ show, bookItem, onClose }) {
   function addBookToDatabase(e) {
     e.preventDefault();
 
-    fetch("http://localhost:4000/allBooks", {
+    fetch("https://storyspotlight-backend.onrender.com/allBooks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

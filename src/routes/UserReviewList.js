@@ -29,9 +29,12 @@ const BookList = () => {
   const handleDelete = async (e, id) => {
     e.stopPropagation();
     try {
-      const response = await fetch(`http://localhost:4000/deletereview/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://storyspotlight-backend.onrender.com/deletereview/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (response.ok) {
         console.log("Review deleted successfully");
         fetchData();

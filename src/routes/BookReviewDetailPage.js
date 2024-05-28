@@ -31,7 +31,7 @@ const BookEdit = ({ isAuthenticated }) => {
   }, [data]);
 
   function fetchData() {
-    fetch(`http://localhost:4000/allBooks/${id}`)
+    fetch(`https://storyspotlight-backend.onrender.com/allBooks/${id}`)
       .then((response) => response.json())
       .then((json) => setData(json.data))
       .catch((error) => console.error("Error fetching books:", error));
@@ -59,7 +59,7 @@ const BookEdit = ({ isAuthenticated }) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:4000/addBookReview/${id}`,
+        `https://storyspotlight-backend.onrender.com/addBookReview/${id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

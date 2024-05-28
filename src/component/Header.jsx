@@ -9,10 +9,13 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/logout", {
-        method: "GET",
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://storyspotlight-backend.onrender.com/logout",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
       if (response.ok) {
         setIsAuthenticated(false);
         localStorage.removeItem("token");
